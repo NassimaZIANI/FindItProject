@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+.my-color {
+  color: #12306c;
+}
+
+.btn-primary {
+  background-color: #12306c !important;
+  border-color: #12306c !important;
+  color: white;
+}
+
+.my-bg {
+  background-color: #12306c !important;
+}
+
+.link-primary {
+  color: #12306c !important;
+}
