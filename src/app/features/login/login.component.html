@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="submit()">
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i
                       class="fas fa-cubes fa-2x me-3"
@@ -28,38 +28,81 @@
                   </h5>
 
                   <!-- Email input -->
-                  <mdb-form-control class="mb-4">
+                  <mdb-form-control>
                     <input
                       mdbInput
                       type="email"
                       id="email"
                       class="form-control form-control-lg"
+                      formControlName="email"
                       placeholder="Saisissez votre adresse e-mail"
                     />
                     <label mdbLabel class="form-label" for="email"
                       >Email address</label
                     >
                   </mdb-form-control>
+                  <div
+                    *ngIf="
+                      loginForm.get('email')?.hasError('required') &&
+                      loginForm.get('email')?.touched
+                    "
+                  >
+                    <small class="text-danger">
+                      Ce champ est obligatoire
+                    </small>
+                  </div>
+                  <div
+                    *ngIf="
+                      loginForm.get('email')?.hasError('email') &&
+                      loginForm.get('email')?.touched
+                    "
+                  >
+                    <small class="text-danger">
+                      Entrez une adresse valide. Exemple : contact@nom.com
+                    </small>
+                  </div>
 
                   <!-- Password input -->
-                  <mdb-form-control class="mb-4">
+                  <mdb-form-control class="mt-4">
                     <input
                       mdbInput
                       type="password"
                       id="password"
                       class="form-control form-control-lg"
+                      formControlName="password"
                       placeholder="Saisissez votre mot de passe"
                     />
                     <label mdbLabel class="form-label" for="password"
                       >Password</label
                     >
                   </mdb-form-control>
+                  <div
+                    *ngIf="
+                      loginForm.get('password')?.hasError('required') &&
+                      loginForm.get('password')?.touched
+                    "
+                  >
+                    <small class="text-danger">
+                      Ce champ est obligatoire
+                    </small>
+                  </div>
+                  <div
+                    *ngIf="
+                      loginForm.get('password')?.hasError('minlength') &&
+                      loginForm.get('password')?.touched
+                    "
+                  >
+                    <small class="text-danger">
+                      Le mot de passe doit comporter au moins 8 caractères
+                    </small>
+                  </div>
 
-                  <div class="pt-1 mb-4">
+                  <!-- button submit -->
+                  <div class="pt-1 mb-4 mt-4">
                     <button
-                      type="button"
-                      class="btn-block btn-primary btn-lg"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem"
+                      class="btn btn-primary btn-lg btn-block"
+                      type="submit"
+                      [disabled]="!loginForm.valid"
                     >
                       Connexion
                     </button>
