@@ -14,7 +14,12 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        if (event['url'] == '/login' || event['url'] == '/signup') {
+        if (
+          event['url'] == '/account/login' ||
+          event['url'] == '/account/signup' ||
+          event['url'] == '/account/forgot-password' ||
+          event['url'] == '/account/verify-email'
+        ) {
           this.showHead = false;
         } else {
           this.showHead = true;

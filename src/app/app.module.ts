@@ -34,6 +34,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
