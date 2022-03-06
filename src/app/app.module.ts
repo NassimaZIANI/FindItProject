@@ -36,6 +36,8 @@ import { AuthService } from './shared/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
+import { ObjectListComponent } from './features/object/object-list/object-list.component';
+import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { VerifyEmailComponent } from './features/verify-email/verify-email.compo
     FooterComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    ObjectListComponent,
+    ObjectDetailComponent,
   ],
   imports: [
     BrowserModule,

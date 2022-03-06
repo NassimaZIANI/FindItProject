@@ -9,10 +9,19 @@
 .my-color {
   color: #12306c;
 }
-
 .btn-primary {
   background-color: #12306c !important;
   border-color: #12306c !important;
+  color: white;
+}
+.btn-secondary {
+  background-color: #ff793f !important;
+  border-color: #ff793f !important;
+  color: white;
+}
+.btn-danger {
+  background-color: red !important;
+  border-color: red !important;
   color: white;
 }
 

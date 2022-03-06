@@ -1,0 +1,23 @@
+<div class="container-fluid p-5">
+  <h3 class="mb-3">Liste de mes objets</h3>
+  <div class="list-group">
+    <div
+      *ngFor="let obj of listObj"
+      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+    >
+      <div>{{ obj.name }}</div>
+      <div>
+        <button class="btn btn-primary btn-rounded mx-2" [routerLink]="obj.id">
+          Détail
+        </button>
+        <button class="btn btn-secondary btn-rounded mx-2">Chercher</button>
+        <button class="btn btn-danger btn-rounded mx-2">Supprimer</button>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-row-reverse">
+    <button class="btn btn-success btn-rounded mt-3 float-right">
+      Ajouter un objet
+    </button>
+  </div>
+</div>

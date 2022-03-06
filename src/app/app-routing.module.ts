@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/login.component';
+import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
+import { ObjectListComponent } from './features/object/object-list/object-list.component';
 import { SignupComponent } from './features/signup/signup.component';
 import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
 import { AuthGuard } from './shared/guard/auth.guard';
@@ -18,6 +20,14 @@ const routes: Routes = [
     ],
   },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: 'objects',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: ObjectListComponent },
+      { path: ':id', component: ObjectDetailComponent },
+    ],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
