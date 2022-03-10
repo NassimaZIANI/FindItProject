@@ -56,6 +56,6 @@ export class SignupComponent implements OnInit {
 
   public submit() {
     let value = this.signupForm.value;
-    this.authService.SignUp(value.email, value.password);
+    this.authService.SignUp(value);
   }
 }

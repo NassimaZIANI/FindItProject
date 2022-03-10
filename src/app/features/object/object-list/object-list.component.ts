@@ -13,5 +13,11 @@ export class ObjectListComponent implements OnInit {
 
   constructor(private objService: ObjectService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.objService.getObjectList().subscribe();
+  }
+
+  public deleteObj(id: string) {
+    this.objService.deleteObject(id);
+  }
 }

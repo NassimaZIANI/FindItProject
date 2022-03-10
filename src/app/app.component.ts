@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './shared/services/auth/auth.service';
 import { ObjectService } from './shared/services/object/object.service';
 
 @Component({
@@ -11,7 +12,5 @@ export class AppComponent implements OnInit {
 
   constructor(private objService: ObjectService) {}
 
-  ngOnInit() {
-    this.objService.getObjectList().subscribe();
-  }
+  ngOnInit() {}
 }

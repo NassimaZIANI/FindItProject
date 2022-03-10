@@ -2,3 +2,19 @@
 .navbar-brand {
   color: white;
 }
+
+.circles {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #eee;
+  border: 2px solid #fff;
+  text-align: center;
+  line-height: 30px;
+}
+
+.dropdown-toggle::before,
+.dropdown-toggle::after {
+  border: none;
+  content: none;
+}

@@ -21,8 +21,8 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './features/home/home.component';
-import { LoginComponent } from './features/login/login.component';
-import { SignupComponent } from './features/signup/signup.component';
+import { LoginComponent } from './features/account/login/login.component';
+import { SignupComponent } from './features/account/signup/signup.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 
 // Firebase services + environment module
@@ -34,8 +34,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './features/account/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './features/account/verify-email/verify-email.component';
 import { ObjectListComponent } from './features/object/object-list/object-list.component';
 import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
 import { ObjectSearchComponent } from './features/object/object-search/object-search.component';

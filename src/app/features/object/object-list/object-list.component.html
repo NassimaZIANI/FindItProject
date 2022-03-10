@@ -16,7 +16,12 @@
         >
           Chercher
         </button>
-        <button class="btn btn-danger btn-rounded mx-2">Supprimer</button>
+        <button
+          class="btn btn-danger btn-rounded mx-2"
+          (click)="deleteObj(obj.id)"
+        >
+          Supprimer
+        </button>
       </div>
     </div>
   </div>

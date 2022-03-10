@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IObject } from '../../interfaces/IObject';
 import { filter, first, map, tap } from 'rxjs/operators';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +10,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class ObjectService {
   public objects$: BehaviorSubject<IObject[]> = new BehaviorSubject(null);
   public object$: BehaviorSubject<IObject> = new BehaviorSubject(null);
-  private userId: string = JSON.parse(localStorage.getItem('user')!).uid;
 
-  constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {}
+  constructor(private db: AngularFirestore) {}
 
   public getObjectList(): Observable<IObject[]> {
+    let user: any = JSON.parse(localStorage.getItem('user')!);
     return this.db
-      .collection('objects', (ref) => ref.where('uid', '==', this.userId))
+      .collection('objects', (ref) => ref.where('uid', '==', user.uid))
       .snapshotChanges()
       .pipe(
         map((snaps) =>
@@ -27,8 +26,6 @@ export class ObjectService {
               ...(snap.payload.doc.data() as {}),
             });
             let myObj = obj as IObject;
-            console.log(myObj);
-
             return myObj;
           })
         ),
@@ -42,8 +39,6 @@ export class ObjectService {
   public getObject(id: string): Observable<IObject> {
     let objects = this.objects$.value;
 
-    console.log(objects);
-
     if (objects) {
       let obj = objects.filter((x) => x.id === id)[0];
       this.object$.next(obj);
@@ -53,9 +48,10 @@ export class ObjectService {
   }
 
   public async addObject(obj: IObject): Promise<boolean> {
-    console.log(obj);
     let des = obj.description;
     if (des === '') des = null;
+
+    let user: any = JSON.parse(localStorage.getItem('user')!);
 
     // Add a new document with a generated id.
     return this.db
@@ -63,11 +59,10 @@ export class ObjectService {
       .add({
         name: obj.name,
         description: des,
-        uid: this.userId,
+        uid: user.uid,
       })
       .then((docRef) => {
         obj.id = docRef.id;
-        console.log(obj);
 
         let objects = this.objects$.value;
         this.objects$.next([...objects, obj]);
@@ -79,5 +74,14 @@ export class ObjectService {
       });
   }
 
-  public deleteObject() {}
+  public deleteObject(idObj: string) {
+    this.db.collection('objects').doc(idObj).delete();
+    let objects = this.objects$.value;
+    if (objects) {
+      const itemsWithoutDeleted = objects.filter(({ id }) => id !== idObj);
+      console.log(itemsWithoutDeleted);
+
+      this.objects$.next(itemsWithoutDeleted);
+    }
+  }
 }
