@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IObject } from 'src/app/shared/interfaces/IObject';
 import { ObjectService } from 'src/app/shared/services/object/object.service';
 
 @Component({
@@ -9,8 +11,13 @@ import { ObjectService } from 'src/app/shared/services/object/object.service';
 })
 export class ObjectAddComponent implements OnInit {
   public objForm: FormGroup;
+  public error: boolean = false;
 
-  constructor(private fb: FormBuilder, private objService: ObjectService) {}
+  constructor(
+    private fb: FormBuilder,
+    private objService: ObjectService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.createObjForm();
@@ -23,5 +30,15 @@ export class ObjectAddComponent implements OnInit {
     });
   }
 
-  public submit() {}
+  public submit() {
+    let value = this.objForm.value as IObject;
+    this.objService.addObject(value).then((x) => {
+      if (x) {
+        this.objForm.reset(value);
+        this.router.navigate(['objects']);
+      } else {
+        this.error = true;
+      }
+    });
+  }
 }

@@ -2,7 +2,7 @@
   <h3 class="mb-3">Liste de mes objets</h3>
   <div class="list-group">
     <div
-      *ngFor="let obj of listObj"
+      *ngFor="let obj of listObj | async"
       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
     >
       <div>{{ obj.name }}</div>

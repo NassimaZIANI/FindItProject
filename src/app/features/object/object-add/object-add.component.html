@@ -21,6 +21,15 @@
             <label mdbLabel class="form-label" for="name">Nom de l'objet</label>
           </mdb-form-control>
         </div>
+        <div
+          class="d-flex justify-content-end"
+          *ngIf="
+            objForm.get('name')?.hasError('required') &&
+            objForm.get('name')?.touched
+          "
+        >
+          <small class="text-danger"> Ce champ est obligatoire </small>
+        </div>
 
         <!-- Object description input -->
         <mdb-form-control class="mt-3">
@@ -29,6 +38,7 @@
             class="form-control"
             id="description"
             rows="4"
+            formControlName="description"
           ></textarea>
           <label mdbLabel class="form-label" for="description"
             >Description</label
@@ -36,10 +46,27 @@
         </mdb-form-control>
 
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block mb-4 mt-4"
+          [disabled]="!objForm.valid"
+        >
           Ajouter
         </button>
       </form>
+      <div *ngIf="error">
+        <p class="text-danger">
+          Désolé votre objet n'a pas pu s'ajouter, veuillez réessayer
+          ultérieurement.
+        </p>
+        <p class="text-danger">
+          Si l'erreur persiste, veuillez contacter notre support technique à
+          l'adresse mail suivante :
+          <a href="mailto:support-contact@findit.com"
+            >support-contact@findit.com</a
+          >
+        </p>
+      </div>
     </div>
   </div>
 </div>
