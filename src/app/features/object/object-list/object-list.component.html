@@ -10,13 +10,21 @@
         <button class="btn btn-primary btn-rounded mx-2" [routerLink]="obj.id">
           Détail
         </button>
-        <button class="btn btn-secondary btn-rounded mx-2">Chercher</button>
+        <button
+          class="btn btn-secondary btn-rounded mx-2"
+          [routerLink]="[obj.id, 'search']"
+        >
+          Chercher
+        </button>
         <button class="btn btn-danger btn-rounded mx-2">Supprimer</button>
       </div>
     </div>
   </div>
   <div class="d-flex flex-row-reverse">
-    <button class="btn btn-success btn-rounded mt-3 float-right">
+    <button
+      class="btn btn-success btn-rounded mt-3 float-right"
+      routerLink="add"
+    >
       Ajouter un objet
     </button>
   </div>

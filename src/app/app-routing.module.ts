@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './features/forgot-password/forgot-password.component';
 import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/login/login.component';
+import { ObjectAddComponent } from './features/object/object-add/object-add.component';
 import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
 import { ObjectListComponent } from './features/object/object-list/object-list.component';
+import { ObjectSearchComponent } from './features/object/object-search/object-search.component';
 import { SignupComponent } from './features/signup/signup.component';
 import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
 import { AuthGuard } from './shared/guard/auth.guard';
@@ -25,7 +27,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: ObjectListComponent },
+      { path: 'add', component: ObjectAddComponent },
       { path: ':id', component: ObjectDetailComponent },
+      { path: ':id/search', component: ObjectSearchComponent },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

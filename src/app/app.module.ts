@@ -38,6 +38,9 @@ import { ForgotPasswordComponent } from './features/forgot-password/forgot-passw
 import { VerifyEmailComponent } from './features/verify-email/verify-email.component';
 import { ObjectListComponent } from './features/object/object-list/object-list.component';
 import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
+import { ObjectSearchComponent } from './features/object/object-search/object-search.component';
+import { AgmCoreModule } from '@agm/core';
+import { ObjectAddComponent } from './features/object/object-add/object-add.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import { ObjectDetailComponent } from './features/object/object-detail/object-de
     VerifyEmailComponent,
     ObjectListComponent,
     ObjectDetailComponent,
+    ObjectSearchComponent,
+    ObjectAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +86,11 @@ import { ObjectDetailComponent } from './features/object/object-detail/object-de
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+
+    // google map
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDWAQTLqD3UypDDsXaveJi-TaJVejMzwR4',
+    }),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
