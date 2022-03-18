@@ -27,13 +27,12 @@ export class AuthGuard implements CanActivate {
     return this.afAuth.authState.pipe(
       map((user) => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          JSON.parse(localStorage.getItem('user')!);
-          return true;
+          if (user.emailVerified) return true;
+          else {
+            this.router.navigate(['account', 'login']);
+            return false;
+          }
         } else {
-          localStorage.setItem('user', 'null');
-          JSON.parse(localStorage.getItem('user')!);
-
           this.router.navigate(['account', 'login']);
           return false;
         }

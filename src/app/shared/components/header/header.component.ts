@@ -19,8 +19,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.loggedIn = true;
-        this.authService.getUser(user.uid).then((user) => (this.user = user));
+        if (user.emailVerified) {
+          this.loggedIn = true;
+          this.authService.getUser(user.uid).then((user) => (this.user = user));
+        } else {
+          this.loggedIn = false;
+        }
       } else {
         this.loggedIn = false;
       }

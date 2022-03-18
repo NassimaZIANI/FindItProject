@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './features/account/forgot-password/forgot-password.component';
-import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/account/login/login.component';
 import { ObjectAddComponent } from './features/object/object-add/object-add.component';
 import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
@@ -21,7 +20,6 @@ const routes: Routes = [
       { path: 'verify-email', component: VerifyEmailComponent },
     ],
   },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'objects',
     canActivate: [AuthGuard],
@@ -32,7 +30,7 @@ const routes: Routes = [
       { path: ':id/search', component: ObjectSearchComponent },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'objects', pathMatch: 'full' },
 ];
 
 @NgModule({

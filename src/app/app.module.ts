@@ -20,7 +20,6 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './features/account/login/login.component';
 import { SignupComponent } from './features/account/signup/signup.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -46,7 +45,6 @@ import { ObjectAddComponent } from './features/object/object-add/object-add.comp
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     LoginComponent,
     SignupComponent,
     FooterComponent,

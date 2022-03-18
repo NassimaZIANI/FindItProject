@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IObject } from '../../interfaces/IObject';
 import { filter, first, map, tap } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { Position } from '../../interfaces/position';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,10 @@ export class ObjectService {
   public objects$: BehaviorSubject<IObject[]> = new BehaviorSubject(null);
   public object$: BehaviorSubject<IObject> = new BehaviorSubject(null);
 
-  constructor(private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private dbReal: AngularFireDatabase
+  ) {}
 
   public getObjectList(): Observable<IObject[]> {
     let user: any = JSON.parse(localStorage.getItem('user')!);
@@ -83,5 +88,21 @@ export class ObjectService {
 
       this.objects$.next(itemsWithoutDeleted);
     }
+  }
+
+  public getPosition(idObj: string): Observable<Position[]> {
+    return this.dbReal
+      .object('positions/' + idObj)
+      .valueChanges()
+      .pipe(
+        map((x) => Object.values(x)),
+        map((data) => data as Position[]),
+        map((data) =>
+          data.sort((a, b) => {
+            return <any>new Date(b.time) - <any>new Date(a.time);
+          })
+        ),
+        map((data) => data.slice(0, 7))
+      );
   }
 }
