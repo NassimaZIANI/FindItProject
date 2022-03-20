@@ -1,33 +1,46 @@
 <div class="container-fluid p-5 row">
-  <div class="col-5 card mr-2 p-3">
+  <div class="col-md-5 card mr-2 p-3">
     <h4>Historique des positions</h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Time</th>
-          <th scope="col">Lat</th>
-          <th scope="col">Long</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let position of positionList | async">
-          <th scope="row">
-            {{ position.time | date: "dd/MM/yyyy h:mm:ss a" }}
-          </th>
-          <td>{{ position.lat }}</td>
-          <td>{{ position.long }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Lat</th>
+            <th scope="col">Long</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let position of positionList">
+            <th scope="row">
+              {{ position.time | date: "dd/MM/yyyy h:mm:ss a" }}
+            </th>
+            <td>{{ position.lat }}</td>
+            <td>{{ position.long }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="col-7">
-    <div *ngIf="positionList | async as position">
-      <agm-map [latitude]="position[0].lat" [longitude]="position[0].long">
+  <div class="col-md-7">
+    <div *ngIf="positionList">
+      <div class="row">
+        <div><h4>La position de l'objet :</h4></div>
+        <div>
+          <p>{{ address }}</p>
+        </div>
+      </div>
+      <agm-map
+        (mapReady)="getAddress(positionList[0])"
+        [latitude]="positionList[0].lat"
+        [longitude]="positionList[0].long"
+      >
         <agm-marker
-          [latitude]="position[0].lat"
-          [longitude]="position[0].long"
+          [latitude]="positionList[0].lat"
+          [longitude]="positionList[0].long"
         ></agm-marker>
       </agm-map>
+      <div></div>
     </div>
   </div>
 </div>
