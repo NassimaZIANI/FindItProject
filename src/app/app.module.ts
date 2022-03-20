@@ -40,6 +40,7 @@ import { ObjectDetailComponent } from './features/object/object-detail/object-de
 import { ObjectSearchComponent } from './features/object/object-search/object-search.component';
 import { AgmCoreModule } from '@agm/core';
 import { ObjectAddComponent } from './features/object/object-add/object-add.component';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { ObjectAddComponent } from './features/object/object-add/object-add.comp
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDWAQTLqD3UypDDsXaveJi-TaJVejMzwR4',
     }),
+    AgmDirectionModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

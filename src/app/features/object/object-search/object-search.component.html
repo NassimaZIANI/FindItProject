@@ -2,7 +2,7 @@
   <div class="col-md-5 card mr-2 p-3">
     <h4>Historique des positions</h4>
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Time</th>
@@ -11,7 +11,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let position of positionList">
+          <tr
+            *ngFor="let position of positionList"
+            (click)="getPosition(position)"
+          >
             <th scope="row">
               {{ position.time | date: "dd/MM/yyyy h:mm:ss a" }}
             </th>
@@ -35,11 +38,19 @@
         [latitude]="positionList[0].lat"
         [longitude]="positionList[0].long"
       >
+        <agm-direction [origin]="origin" [destination]="destination">
+        </agm-direction>
+      </agm-map>
+      <!-- <agm-map
+        (mapReady)="getAddress(positionList[0])"
+        [latitude]="positionList[0].lat"
+        [longitude]="positionList[0].long"
+      >
         <agm-marker
           [latitude]="positionList[0].lat"
           [longitude]="positionList[0].long"
         ></agm-marker>
-      </agm-map>
+      </agm-map> -->
       <div></div>
     </div>
   </div>

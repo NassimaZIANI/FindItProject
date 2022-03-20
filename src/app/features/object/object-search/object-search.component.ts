@@ -10,10 +10,10 @@ import { ObjectService } from 'src/app/shared/services/object/object.service';
   styleUrls: ['./object-search.component.scss'],
 })
 export class ObjectSearchComponent implements OnInit {
-  lat = 51.678418;
-  lng = 7.809007;
-  address: string;
+  public address: string;
   public positionList: Position[];
+  public destination: any;
+  public origin: any;
 
   constructor(
     private objService: ObjectService,
@@ -24,16 +24,18 @@ export class ObjectSearchComponent implements OnInit {
     let id = this.route.snapshot.params.id;
     this.objService.getPosition(id).subscribe((positions) => {
       this.positionList = positions;
+      this.destination = { lat: positions[0].lat, lng: positions[0].long };
       this.getAddress(positions[0]);
     });
     this.getLocation();
   }
 
-  getLocation(): void {
+  private getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
+        this.origin = { lat: latitude, lng: longitude };
         console.log(longitude);
         console.log(latitude);
       });
@@ -42,7 +44,7 @@ export class ObjectSearchComponent implements OnInit {
     }
   }
 
-  getAddress(position: Position) {
+  public getAddress(position: Position) {
     let geoCoder = new google.maps.Geocoder();
     geoCoder.geocode(
       { location: { lat: position.lat, lng: position.long } },
@@ -59,5 +61,10 @@ export class ObjectSearchComponent implements OnInit {
         }
       }
     );
+  }
+
+  public getPosition(position: Position) {
+    this.getAddress(position);
+    this.destination = { lat: position.lat, lng: position.long };
   }
 }

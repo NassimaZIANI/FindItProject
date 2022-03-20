@@ -23,6 +23,7 @@
     "@angular/router": "~12.2.0",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@types/googlemaps": "^3.43.3",
+    "agm-direction": "^0.8.10",
     "firebase": "^9.6.7",
     "mdb-angular-ui-kit": "^1.6.1",
     "rxjs": "~6.6.0",

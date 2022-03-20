@@ -25,6 +25,7 @@ export class ObjectAddComponent implements OnInit {
 
   private createObjForm() {
     this.objForm = this.fb.group({
+      id: ['', Validators.required],
       name: ['', Validators.required],
       description: [''],
     });

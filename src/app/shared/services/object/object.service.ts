@@ -58,17 +58,16 @@ export class ObjectService {
 
     let user: any = JSON.parse(localStorage.getItem('user')!);
 
-    // Add a new document with a generated id.
+    // Add a new document with a personal id.
     return this.db
       .collection('objects')
-      .add({
+      .doc(obj.id)
+      .set({
         name: obj.name,
         description: des,
         uid: user.uid,
       })
-      .then((docRef) => {
-        obj.id = docRef.id;
-
+      .then(() => {
         let objects = this.objects$.value;
         this.objects$.next([...objects, obj]);
         return true;

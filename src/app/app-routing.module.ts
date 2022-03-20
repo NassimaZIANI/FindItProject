@@ -26,7 +26,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ObjectListComponent },
       { path: 'add', component: ObjectAddComponent },
-      { path: ':id', component: ObjectDetailComponent },
+      /* { path: ':id', component: ObjectDetailComponent }, */
       { path: ':id/search', component: ObjectSearchComponent },
     ],
   },
