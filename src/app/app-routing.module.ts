@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './features/account/forgot-password/forgot-password.component';
 import { LoginComponent } from './features/account/login/login.component';
 import { ObjectAddComponent } from './features/object/object-add/object-add.component';
-import { ObjectDetailComponent } from './features/object/object-detail/object-detail.component';
 import { ObjectListComponent } from './features/object/object-list/object-list.component';
 import { ObjectSearchComponent } from './features/object/object-search/object-search.component';
 import { SignupComponent } from './features/account/signup/signup.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
     children: [
       { path: '', component: ObjectListComponent },
       { path: 'add', component: ObjectAddComponent },
-      /* { path: ':id', component: ObjectDetailComponent }, */
       { path: ':id/search', component: ObjectSearchComponent },
     ],
   },
