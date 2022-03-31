@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Position } from 'src/app/shared/interfaces/position';
@@ -14,11 +15,17 @@ export class ObjectSearchComponent implements OnInit {
   public positionList: Position[];
   public destination: any;
   public origin: any;
+  public webUrl: any;
+  private url =
+    'https://play.google.com/store/apps/details?id=com.themobileknowledge.uwbtoolboxapp';
 
   constructor(
     private objService: ObjectService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
+  ) {
+    this.webUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params.id;
@@ -66,5 +73,9 @@ export class ObjectSearchComponent implements OnInit {
   public getPosition(position: Position) {
     this.getAddress(position);
     this.destination = { lat: position.lat, lng: position.long };
+  }
+
+  public openUrl() {
+    window.location.href = this.url;
   }
 }

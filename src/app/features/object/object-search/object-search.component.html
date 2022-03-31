@@ -29,8 +29,15 @@
     <div *ngIf="positionList">
       <div class="row">
         <div><h4>La position de l'objet :</h4></div>
-        <div>
-          <p>{{ address }}</p>
+        <div class="d-flex flex-row justify-content-between">
+          <div>
+            <p>{{ address }}</p>
+          </div>
+          <div>
+            <button class="btn btn-primary" (click)="openUrl()">
+              Ouvrir application
+            </button>
+          </div>
         </div>
       </div>
       <agm-map
